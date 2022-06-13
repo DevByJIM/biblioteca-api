@@ -5,6 +5,7 @@ export const register = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = new User({ email, password });
+        console.log(user);
         await user.save();
 
         //jwt token
