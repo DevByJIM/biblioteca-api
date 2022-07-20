@@ -14,16 +14,16 @@ const app = express();
 const whiteList = [process.env.ORIGIN1, process.env.ORIGIN2];
 
 
-// app.use(cors({
-//         origin: function(origin, callback) {
-//             console.log("😲😲😲 =>", origin);
-//             if (whiteList.includes(origin)) {
-//                 return callback(null, origin);
-//             }
-//             return callback("Origen " + origin + " no autorizado por CORS");
-//         },
-//     })
-// );
+app.use(cors({
+        origin: function(origin, callback) {
+            console.log("😲😲😲 =>", origin);
+            if (!origin || whiteList.includes(origin)) {
+                return callback(null, origin);
+            }
+            return callback("Origen " + origin + " no autorizado por CORS");
+        },
+    })
+);
 
 app.use(express.json());
 app.use(cookieParser());

@@ -3,9 +3,9 @@ import { Book } from "../models/Book.js";
 
 export const getBooks = async (req, res) => {
     try {
-        const books = await Book.find().populate('authorid');
-        console.log(books)
-        return res.json({ books });
+        const books = await Book.find().sort({'feclec':'descending'}).populate('authorid');
+        // return res.json({ books });
+        return res.status(200).json({ books });
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: "Error de servidor" });
@@ -15,9 +15,9 @@ export const getBooks = async (req, res) => {
 export const getBook = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log(id)
+        
         const book = await Book.findById(id).populate('authorid');
-        console.log(book.authorid)
+        
         if (!book)
             return res.status(404).json({ error: "No existe el libro" });
 
@@ -37,7 +37,7 @@ export const createBook = async (req, res) => {
         if (existbook) return res.status(400).json({ error: "El libro ya esta en la BBDD" });
 
         const newBook = await book.save();
-        console.log(book);
+        
         return res.status(201).json({ newBook });
     } catch (error) {
         console.log(error);
@@ -49,7 +49,7 @@ export const removeBook = async (req, res) => {
     try {
 
         const { id } = req.params;
-        console.log(req.params);
+        
         const book = await Book.findById(id);
 
         if (!book) return res.status(404).json({ error: "No existe el libro" });
