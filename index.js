@@ -20,8 +20,11 @@ app.use(cors({
             if (!origin || whiteList.includes(origin)) {
                 return callback(null, origin);
             }
-            return callback("Origen " + origin + " no autorizado por CORS");
+            return callback(
+                "Origen " + origin + " no autorizado por CORS"
+                );
         },
+        credentials: true,
     })
 );
 
