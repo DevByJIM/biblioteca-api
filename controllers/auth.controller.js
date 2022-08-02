@@ -37,7 +37,7 @@ export const login = async (req, res) => {
         const { token, expiresIn } = generateToken(user.id)
         generateRefreshToken(user.id, res);
 
-        return res.json({ token, expiresIn})
+        return res.json({ token, expiresIn, sameSite: 'none', secure: true })
 
     } catch (error) {
         console.log(error)
@@ -61,7 +61,7 @@ export const refreshToken = (req, res) => {
 
         const { token, expiresIn } = generateToken(req.uid);
 
-        return res.json({ token, expiresIn ,  sameSite: 'none', secure: true });
+        return res.json({ token, expiresIn , sameSite: 'none', secure: true });
 
     } catch (error) {
         return res.status(500).json({ error: "Error en el Servidor" });
