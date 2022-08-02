@@ -13,7 +13,7 @@ const app = express();
 
 const whiteList = [process.env.ORIGIN1, process.env.ORIGIN2];
 
-
+app.set('trust proxy',1);
 app.use(cors({
         origin: function(origin, callback) {
             console.log("😲😲😲 =>", origin);
