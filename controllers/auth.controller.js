@@ -37,7 +37,7 @@ export const login = async (req, res) => {
         const { token, expiresIn } = generateToken(user.id)
         generateRefreshToken(user.id, res);
 
-        return res.json({ token, expiresIn })
+        return res.json({ token, expiresIn, sameSite: 'lax' })
 
     } catch (error) {
         console.log(error)
