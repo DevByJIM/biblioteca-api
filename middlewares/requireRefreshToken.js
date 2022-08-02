@@ -3,7 +3,7 @@ import { tokenVerificationErrors } from "../utils/tokenManager.js";
 
 export const requireRefreshToken = (req, res, next) =>{
     try {
-        const refreshTokenCookie = req.cookies.refreshToken();
+        const refreshTokenCookie = req.cookies.refreshToken;
         if (!refreshTokenCookie)
             throw new Error("No existe token")
 
