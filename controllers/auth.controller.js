@@ -61,7 +61,7 @@ export const refreshToken = (req, res) => {
 
         const { token, expiresIn } = generateToken(req.uid);
 
-        return res.json({ token, expiresIn , sameSite: 'lax'});
+        return res.json({ token, expiresIn ,  sameSite: 'none', secure: true });
 
     } catch (error) {
         return res.status(500).json({ error: "Error en el Servidor" });
