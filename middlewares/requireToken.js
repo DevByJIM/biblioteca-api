@@ -9,10 +9,12 @@ export const requireToken = (req, res, next) => {
         if (!token)
             throw new Error("No Bearer")
         
-        token = token.split(" ")[1];
-        const payload = jwt.verify(token, process.env.JWT_SECRET);
-        req.uid = payload.uid;
-        next();
+            token = token.split(" ")[1];
+            const { uid } = jwt.verify(token, process.env.JWT_SECRET);
+    
+            req.uid = uid;
+    
+            next();
     } catch (error) {
 
         return res

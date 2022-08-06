@@ -7,8 +7,8 @@ export const validationResultExpress = (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    next()
-}
+    next();
+};
 
 export const bodyRegisterValidator = [
     body("email", "Formato de email no correcto")

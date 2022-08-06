@@ -1,13 +1,14 @@
 import { Router } from "express";
+import { body } from "express-validator";
 import {
-    login,
-    register,
     infoUser,
-    refreshToken,
+    login,
     logout,
+    refreshToken,
+    register,
 } from "../controllers/auth.controller.js";
-import { requireToken } from "../middlewares/requireToken.js";
 import { requireRefreshToken } from "../middlewares/requireRefreshToken.js";
+import { requireToken } from "../middlewares/requireToken.js";
 import { bodyLoginValidator, bodyRegisterValidator } from "../middlewares/validatorManager.js";
 
 const router = Router();
