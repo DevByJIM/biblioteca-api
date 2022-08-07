@@ -51,7 +51,7 @@ export const login = async (req, res) => {
 export const infoUser = async (req, res) => {
     try {
         const user = await User.findById(req.uid).lean()
-        res.json({ id: user.id, email: user.email });
+        res.json({ id: user.id, email: user.email, username:user.username });
     } catch (error) {
         return res.status(500).json({ error: "Error en el Servidor" });
     }
