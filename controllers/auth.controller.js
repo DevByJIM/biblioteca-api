@@ -53,7 +53,7 @@ export const infoUser = async (req, res) => {
         // const user = await User.findById(req.uid).lean()
         console.log(req)
         const user = await User.findOne( req.email).lean();
-        res.json({ id: user.id, email: user.email, username: user.username });
+        res.json({ id: user._id, email: user.email, username: user.username });
     } catch (error) {
         return res.status(500).json({ error: "Error en el Servidor" });
     }
