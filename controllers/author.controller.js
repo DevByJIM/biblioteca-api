@@ -3,7 +3,7 @@ import { Author } from "../models/Author.js";
 
 export const getAuthors = async (req, res) => {
     try {
-        const authors = await Author.find();
+        const authors = await Author.find().sort({'name':'ascending'});
         return res.json({ authors });
     } catch (error) {
         console.log(error);

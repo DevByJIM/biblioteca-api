@@ -92,7 +92,7 @@ export const getBooksAuthor = async (req, res) => {
     try {
         const { author } = req.params;
         console.log(author)
-        const book = await Book.find({ author: author }).populate('authorid');
+        const book = await Book.find({ authorid: authorid }).populate('authorid');
 
         if (!book)
             return res.status(404).json({ error: "No existe el libro" });
