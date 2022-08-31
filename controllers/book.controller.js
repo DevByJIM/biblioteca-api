@@ -53,7 +53,7 @@ export const removeBook = async (req, res) => {
         const book = await Book.findById(id);
 
         if (!book) return res.status(404).json({ error: "No existe el libro" });
-        if (!book.uid.equals(req.uid))
+        if (!book.uid.equals(req.body.uid))
             return res.status(401).json({ error: "El libro no te pertenece" });
 
         await Book.deleteOne(book);
@@ -74,10 +74,8 @@ export const updateBook = async (req, res) => {
 
         if (!book) return res.status(404).json({ error: "no existe el libro" });
 
-        if (!book.uid.equals(req.uid))
-            return res.status(401).json({ error: "El libro no te pertenece" });
-
-        console.log(book);
+        if (!book.uid.equals(req.body.uid))
+            return res.status(401).json({ error: "El libr0 no te pertenece" });
 
         return res.json({ book });
     } catch (error) {
