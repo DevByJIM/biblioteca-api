@@ -68,14 +68,13 @@ export const removeBook = async (req, res) => {
 export const updateBook = async (req, res) => {
     try {
         const { id } = req.params;
-
         let book = await Book.findByIdAndUpdate(id, req.body);
 
 
         if (!book) return res.status(404).json({ error: "no existe el libro" });
 
         if (!book.uid.equals(req.body.uid))
-            return res.status(401).json({ error: "El libr0 no te pertenece" });
+            return res.status(401).json({ error: "El libro no te pertenece" });
 
         return res.json({ book });
     } catch (error) {
