@@ -52,7 +52,7 @@ export const removeAuthor = async (req, res) => {
         const author = await Author.findById(id);
 
         if (!author) return res.status(404).json({ error: "No existe el Autor" });
-        if (!author.uid.equals(req.uid))
+        if (!author.uid.equals(req.body.uid))
             return res.status(401).json({ error: "El Autor no te pertenece" });
 
         await Author.deleteOne(author);
@@ -73,7 +73,7 @@ export const updateAuthor = async (req, res) => {
 
         if (!author) return res.status(404).json({ error: "No existe el Autor" });
 
-        if (!author.uid.equals(req.uid))
+        if (!author.uid.equals(req.body.uid))
             return res.status(401).json({ error: "El autor no te pertenece" });
 
         console.log(author);
